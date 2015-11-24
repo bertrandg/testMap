@@ -1,0 +1,4 @@
+
+
+- loading du json: faire un avancement.
+- map: bug du png marker qui load pas.
