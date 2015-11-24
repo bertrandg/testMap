@@ -12,4 +12,4 @@
 
 
 ## Utilisation du générateur Yeoman:
-(https://github.com/Swiip/generator-gulp-angular)[https://github.com/Swiip/generator-gulp-angular]
+[https://github.com/Swiip/generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
