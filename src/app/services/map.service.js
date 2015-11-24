@@ -22,7 +22,7 @@
     };
 
     function loadData() {
-      var apiList = ['assets/data/positions.json', 'assets/data/positions2.json'];
+      var apiList = ['assets/data/positions.json', 'assets/data/positions2.json', 'assets/data/positions3.json'];
 
       $q.all(apiList.map(function (item) {
         return $http({
