@@ -11,7 +11,7 @@
     var _list = [];
     var _observer;
 
-    L.Icon.Default.imagePath = '/bower_components/leaflet/dist/images';
+    L.Icon.Default.imagePath = 'assets/images/leaflet';
 
     var Service = {
       loadData: loadData,
