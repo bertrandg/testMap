@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h3 class="modal-title">Filtrage des résultats:</h3>
+</div>
+
+<div class="modal-body">
+  <form name="mainForm">
+    <div>
+      <label><input type="checkbox" ng-model="vm.filter.gender.enabled"/> Genre:</label>
+      <form name="genderForm">
+        <label><input type="radio" ng-model="vm.filter.gender.value = 'male'"/> Homme</label>
+        <label><input type="radio" ng-model="vm.filter.gender.value = 'female'"/> Femme</label>
+      </form>
+    </div>
+    <div>
+      <label><input type="checkbox" ng-model="vm.filter.date.enabled"/> Date:</label>
+      <form name="dateForm">
+        <label>Début:<input type="text" ng-model="vm.filter.date.startValue"/></label>
+        <label>Fin: <input type="text" ng-model="vm.filter.date.endValue"/></label>
+      </form>
+    </div>
+    <div>
+      <label><input type="checkbox" ng-model="vm.filter.name.enabled"/>Nom: </label>
+      <form name="nameForm">
+        <input type="text" ng-model="vm.filter.name.value"/>
+      </form>
+    </div>
+    <div>
+      <label><input type="checkbox" ng-model="vm.filter.position.enabled"/>Position: </label>
+      <form name="positionForm">
+        <label>Latitude min: <input type="text" ng-model="vm.filter.position.startLatValue"/></label>
+        <label>Latitude max: <input type="text" ng-model="vm.filter.position.endLatValue"/></label>
+        <label>Longitude min: <input type="text" ng-model="vm.filter.position.startLngValue"/></label>
+        <label>Longitude max: <input type="text" ng-model="vm.filter.position.endLngValue"/></label>
+      </form>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

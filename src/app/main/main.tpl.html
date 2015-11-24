@@ -1,0 +1,20 @@
+
+<div class="container-fluid">
+  <div class="col-md-12">
+    <h2>Visualisation des données: {{ vm.totalItems }} items</h2>
+    <p>
+      <strong>Filtres:</strong> {{ vm.filter.getDisplay() }}
+      <button ng-click="vm.filter.openModal()" class="btn btn-sm btn-primary">Ajouter/Modifier</button> 
+      <button ng-click="deleteFilter()" class="btn btn-sm btn-danger">Supprimer</button></p>
+  </div>
+
+  <h1 ng-if="vm.totalItems == 0" class="text-center">Chargement des positions..</h1>
+  <div ng-if="vm.totalItems > 0">
+    <div class="col-md-6 col-sm-12">
+      <er-grid></er-grid>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <er-map></er-map>
+    </div>
+  </div>
+</div>

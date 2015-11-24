@@ -1,0 +1,9 @@
+er-grid {
+  display: block;
+  border: 1px solid #999;
+  padding: 10px;
+
+  [ag-grid] {
+    height: 600px;
+  }
+}
