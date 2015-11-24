@@ -6,8 +6,7 @@
     .factory('MapService', MapService);
 
   /** @ngInject */
-  function MapService($log, $http, $timeout) {
-    var _apiHost = 'assets/data/positions.json';
+  function MapService($log, $http, $timeout, $q) {
     var _list = [];
     var _observer;
 
@@ -23,13 +22,22 @@
     };
 
     function loadData() {
-      $http.get(_apiHost).then(loadDataComplete).catch(loadDataFailed);
+      var apiList = ['assets/data/positions.json', 'assets/data/positions2.json'];
 
-      function loadDataComplete(response) {
-        _list = response.data;
+      $q.all(apiList.map(function (item) {
+        return $http({
+          method: 'GET',
+          url: item
+        });
+      })).then(loadDataComplete).catch(loadDataFailed);
 
+      function loadDataComplete(results) {
+        angular.forEach(results, function (result) {
+          _list = _list.concat(result.data);
+        });
+        
         $timeout(function() {
-          _observer.onNext(response.data);
+          _observer.onNext(_list);
         }, 1000);
       }
 

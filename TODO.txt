@@ -1,4 +1,6 @@
 
 
+✓ map: bug du png marker qui load pas.
+- ouverture modal avec details item quand click sur marker ou entrée du tableau
 - loading du json: faire un avancement.
-- map: bug du png marker qui load pas.
+- css: bootstrapiser tout ça.
