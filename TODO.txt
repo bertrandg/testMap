@@ -16,6 +16,7 @@ X map: passer provider a google map ou autre pour avoir un meilleur zoom.
 
 # AMELIORATIONS
 
+- mieux cleaner le clusterGroup lors de la suppression des markers (monte en mémoire lors du 2éme affichage de longue liste 100k > 50k = 500mo++).
 - utiliser des vraies dates plutôt que des string
 - conserver les 100k markers sur un clusterGroup à part quand on affiche un tableaux filtré pour réutiliser par la suite.
 - trouver moyen de stopper le 'chunkProgress' lors ajout markers pour pouvoir repartir d'un nouveau tableau de data.

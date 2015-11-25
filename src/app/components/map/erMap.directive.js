@@ -36,12 +36,13 @@
       })
 
       function addMarkers(list) {
-        map.removeLayer(markers);
         markers.clearLayers();
+        map.removeLayer(markers);
 
         if(list.length == 0) return;
 
         GeoDataService.mapWIP = true;
+        console.time('clustering');
 
         var markerList = [];
         for (var i = 0; i < list.length; i++) {
@@ -51,13 +52,10 @@
             markerList.push(marker);
           }
         }
-        console.time('clustering');
 
         markers.addLayers(markerList);
         //markers.on('click', clickMarker);
         map.addLayer(markers);
-
-        console.timeEnd('clustering');
       }
 
       function updateProgressBar(processed, total, elapsed, layersArray) {
@@ -71,6 +69,8 @@
 
         if (processed === total) {
           progress.style.display = 'none';
+
+          console.timeEnd('clustering');
 
           $timeout(function() {
             GeoDataService.mapWIP = false;

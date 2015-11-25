@@ -11,7 +11,9 @@
 </nav>
 
 <div class="container-fluid">
-  <h1 ng-if="vm.GeoDataService.totalItems == 0" class="text-center">Chargement des positions..</h1>
+  <div ng-if="vm.GeoDataService.totalItems == 0" class="text-center">
+    <span class="badge">Chargement des fichiers..</span>
+  </div>
   <div ng-class="{'hideMe': vm.GeoDataService.totalItems == 0}">
     <div class="col-md-6 col-sm-12">
       <er-grid></er-grid>
