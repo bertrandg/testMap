@@ -11,7 +11,7 @@
     var columnDefs = [
       {headerName: "Nom", field: "name"},
       {headerName: "Date", field: "registered", width: 110, comparator: dateComparator},
-      {headerName: "Genre", field: "gender", width: 90},
+      {headerName: "Genre", field: "gender", width: 90, cellRenderer: cellRendererGender},
       {headerName: "Téléphone", field: "phone"},
       {headerName: "Lat", field: "latitude", width: 90},
       {headerName: "Lon", field: "longitude", width: 90},
@@ -60,6 +60,13 @@
       return result;
     }
 
+    function cellRendererGender(params) {
+      if (params.value == 'female') {
+        return 'Femme';
+      } else {
+        return 'Homme';
+      }
+    }
 
     return Service;
   }

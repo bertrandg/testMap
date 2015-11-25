@@ -54,7 +54,7 @@
         console.time('clustering');
 
         markers.addLayers(markerList);
-        markers.on('click', clickMarker);
+        //markers.on('click', clickMarker);
         map.addLayer(markers);
 
         console.timeEnd('clustering');
