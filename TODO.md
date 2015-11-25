@@ -5,7 +5,7 @@ X map: passer provider a google map ou autre pour avoir un meilleur zoom.
 ✓ filter: ajout datepicker (ui-bootstrap).
 ✓ modal avec details item.
 ✓ ouverture modal avec details item quand click sur marker.
-- ouverture modal avec details item quand click sur entrée du tableau.
+✓ ouverture modal avec details item quand click sur entrée du tableau.
 ✓ filter: quand 0 results > retour etat chargement.
 ✓ style: bootstrapiser tout ça.
 ✓ style: utiliser SASS mixin & variables.
