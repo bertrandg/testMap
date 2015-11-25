@@ -6,7 +6,7 @@
     .factory('ItemDetailsService', ItemDetailsService);
 
   /** @ngInject */
-  function ItemDetailsService($uibModal, GeoDataService) {
+  function ItemDetailsService($uibModal, $log, GeoDataService, FilterService) {
 
     var Service = {
       openModal: openModal
@@ -14,9 +14,9 @@
 
 
     function openModal(id) {
-      $uibModal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: 'app/components/itemsDetailsModal/itemsDetailsModal.tpl.html',
+        templateUrl: 'app/components/itemDetailsModal/itemDetailsModal.tpl.html',
         controller: 'ItemDetailsModalController',
         controllerAs: 'vm',
         bindToController: true,
@@ -24,6 +24,12 @@
         resolve: {
           item: GeoDataService.getItem(id)
         }
+      });
+
+      modalInstance.result.then(function (item) {
+        FilterService.isolateItemAndRefresh(item);
+      }, function () {
+        $log.info('ItemDetailsModal dismissed at: ' + new Date());
       });
     }
 

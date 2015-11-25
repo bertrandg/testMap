@@ -19,13 +19,19 @@
     return directive;
 
     /** @ngInject */
-    function ErMapController($log, $timeout, $element, GeoDataService) {
+    function ErMapController($log, $timeout, $element, GeoDataService, ItemDetailsService) {
       var vm = this;
       
       var map = new L.Map('map', {
-        center: new L.LatLng(45.755658, 4.834432), 
+        center: new L.LatLng(45.755658, 4.834432),
         zoom: 13, 
         layers: [new L.TileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { maxZoom: 21 })]
+      });
+
+      var MarkerExtended = L.CircleMarker.extend({
+         options: {
+            radius: 8
+         }
       });
 
       var markers = null;
@@ -51,7 +57,8 @@
         for (var i = 0; i < list.length; i++) {
           var a = list[i];
           if(a.latitude && a.longitude) {
-            var marker = new L.Marker(new L.LatLng(a.latitude, a.longitude), { id: a.id });
+            var marker = new MarkerExtended(new L.LatLng(a.latitude, a.longitude), { title: a.id, fill: true, fillColor: 'black', color: '#999', stroke: true, weight: 12, opacity: .5, fillOpacity: 1 });
+            marker.on('click', clickMarker);
             markerList.push(marker);
           }
         }
@@ -59,7 +66,7 @@
         $timeout(function() {
           markers = new L.MarkerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });
           markers.addLayers(markerList);
-          markers.on('click', clickMarker);
+          //markers.on('click', clickMarker);
           map.addLayer(markers);
         });
       }
@@ -85,7 +92,7 @@
       }
 
       function clickMarker(e) {
-        $log.info('click > ', e);
+        ItemDetailsService.openModal(this.options.title);
       }
     }
   }

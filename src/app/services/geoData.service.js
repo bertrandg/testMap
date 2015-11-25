@@ -6,7 +6,7 @@
     .factory('GeoDataService', GeoDataService);
 
   /** @ngInject */
-  function GeoDataService($log, $http, $timeout, $q, GridService, UtilsService, Files) {
+  function GeoDataService($location, $log, $http, $timeout, $q, GridService, UtilsService, Files) {
     var _list = [];
     var _filteredList = [];
     var _observer;
@@ -16,12 +16,12 @@
     var Service = {
       totalItems: 0,
       mapWIP: true,
-      list: Rx.Observable.create(function(observer) {
-        _observer = observer;
-      }).share(),
       loadData: loadData,
       filterData: filterData,
-      getItem: getItem
+      getItem: getItem,
+      list: Rx.Observable.create(function(observer) {
+        _observer = observer;
+      }).share()
     };
 
     $timeout(function() {
@@ -29,7 +29,14 @@
     });
 
     function loadData() {
-      $q.all(Files.map(function (item) {
+      var _files = Files.tab102k;
+
+      if($location.search()) {
+        if($location.search().tab == '32k') _files = Files.tab32k;
+        if($location.search().tab == '64k') _files = Files.tab64k;
+      }
+
+      $q.all(_files.map(function (item) {
         return $http({
           method: 'GET',
           url: item
@@ -54,7 +61,7 @@
     }
 
     function getItem(id) {
-      return _.find(_list, function(item) { item.id = id; });
+      return _.find(_list, function(item) { return item.id == id; });
     }
 
     function filterData(filter) {

@@ -3,21 +3,23 @@
 ✓ map: bug du png marker qui load pas.
 X map: passer provider a google map ou autre pour avoir un meilleur zoom.
 ✓ filter: ajout datepicker (ui-bootstrap).
-- ouverture modal avec details item quand click sur marker ou entrée du tableau.
-- loading du json: faire un avancement.
+✓ modal avec details item.
+✓ ouverture modal avec details item quand click sur marker.
+- ouverture modal avec details item quand click sur entrée du tableau.
 ✓ filter: quand 0 results > retour etat chargement.
-- filter: ajouter validation sur form avec input.ng-invalid.ng-pristine { border-color: red; }
 ✓ style: bootstrapiser tout ça.
 ✓ style: utiliser SASS mixin & variables.
 ✓ style: utiliser quelques glyphicons.
 ✓ supprimer ui-leaflet des dependances.
+- loading du json: faire un avancement.
+- filter: ajouter validation sur form avec input.ng-invalid.ng-pristine { border-color: red; }
 
 ------------------------
 
 # AMELIORATIONS
 
 - mieux cleaner le clusterGroup lors de la suppression des markers (monte en mémoire lors du 2éme affichage de longue liste 100k > 50k = 500mo++).
-- utiliser des vraies dates plutôt que des string
+- utiliser des vraies dates plutôt que des string.
 - conserver les 100k markers sur un clusterGroup à part quand on affiche un tableaux filtré pour réutiliser par la suite.
 - trouver moyen de stopper le 'chunkProgress' lors ajout markers pour pouvoir repartir d'un nouveau tableau de data.
 

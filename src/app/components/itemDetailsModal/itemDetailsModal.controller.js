@@ -6,13 +6,18 @@
     .controller('ItemDetailsModalController', ItemDetailsModalController);
 
   /** @ngInject */
-  function ItemDetailsModalController($uibModalInstance, item) {
+  function ItemDetailsModalController($uibModalInstance, GeoDataService, item) {
     var vm = this;
 
+    vm.GeoDataService = GeoDataService;
     vm.item = item;
 
-    vm.close = function() {
-      $uibModalInstance.close();
+    vm.filterData = function() {
+      $uibModalInstance.close(item);
+    };
+
+    vm.cancel = function() {
+      $uibModalInstance.dismiss('cancel');
     };
   }
 })();

@@ -19,7 +19,7 @@
     return directive;
 
     /** @ngInject */
-    function ErGridController($log, $timeout, GeoDataService, GridService) {
+    function ErGridController($log, $timeout, GeoDataService, GridService, ItemDetailsService) {
       var vm = this;
 
       vm.gridOptions = GridService.gridOptions;
@@ -28,7 +28,14 @@
         $log.log('Observable subscriber called ---> GRID ', list.length);
 
         vm.gridOptions.api.setRowData(list);
+        
+        vm.gridOptions.api.removeEventListener('rowClicked', onRowClicked);
+        vm.gridOptions.api.addEventListener('rowClicked', onRowClicked);
       });
+
+      function onRowClicked(e) {
+          ItemDetailsService.openModal(e.data.id);
+        }
     }
   }
 

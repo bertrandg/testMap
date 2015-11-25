@@ -9,17 +9,43 @@
       <table class="table table-hover">
         <tbody>
           <tr>
-            <td>
-            </td>
-            <td>
-            </td>
+            <td>Nom: </td>
+            <td>{{ vm.item.name }}</td>
+          </tr>
+          <tr>
+            <td>Genre: </td>
+            <td>{{ (vm.item.gender == 'male' ? 'Homme' : 'Femme') }}</td>
+          </tr>
+          <tr>
+            <td>Numéro de téléphone: </td>
+            <td>{{ vm.item.phone }}</td>
+          </tr>
+          <tr>
+            <td>Date de localisation: </td>
+            <td>{{ vm.item.registered }}</td>
+          </tr>
+          <tr>
+            <td>Position: </td>
+            <td>{{ 'LAT: ' + vm.item.latitude + ' - LNG: ' + vm.item.longitude }}</td>
+          </tr>
+          <tr>
+            <td>Info: </td>
+            <td>{{ vm.item.desc }}</td>
+          </tr>
+          <tr>
+            <td>Identifiant: </td>
+            <td>{{ vm.item.id }}</td>
           </tr>
         </tbody>
       </table>
     </form>
+    <p>
+      <button ng-click="vm.filterData()" ng-disabled="vm.GeoDataService.mapWIP" class="btn btn-primary"><span class="glyphicon glyphicon-screenshot"></span> Rechercher</button>
+       (Identifier les personnes à proximité à la même date)
+    </p>
   </div>
 
   <div class="modal-footer">
-      <button class="btn btn-primary" type="button" ng-click="vm.close()">Fermer</button>
+      <button class="btn btn-primary" type="button" ng-click="vm.cancel()">Fermer</button>
   </div>
 </div>
