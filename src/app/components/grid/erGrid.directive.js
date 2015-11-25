@@ -19,13 +19,15 @@
     return directive;
 
     /** @ngInject */
-    function ErGridController(MapService, GridService) {
+    function ErGridController($log, $timeout, GeoDataService, GridService) {
       var vm = this;
 
       vm.gridOptions = GridService.gridOptions;
 
-      MapService.list.subscribe(function(list) {
-        vm.gridOptions.rowData = list;
+      GeoDataService.list.subscribe(function(list) {
+        $log.log('Observable subscriber called ---> GRID ', list.length);
+
+        vm.gridOptions.api.setRowData(list);
       });
     }
   }

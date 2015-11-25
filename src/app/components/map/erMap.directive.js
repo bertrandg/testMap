@@ -19,41 +19,42 @@
     return directive;
 
     /** @ngInject */
-    function ErMapController($log, $timeout, $element, MapService) {
+    function ErMapController($log, $timeout, $element, GeoDataService) {
       var vm = this;
+      
+      var map = new L.Map('map', {
+        center: new L.LatLng(45.755658, 4.834432), 
+        zoom: 13, 
+        layers: [new L.TileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { maxZoom: 21 })]
+      });
 
-      var cloudmadeUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-          cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade, Points &copy 2012 LINZ',
-          cloudmade = new L.TileLayer(cloudmadeUrl, { maxZoom: 21, attribution: cloudmadeAttribution }),
-          latlng = new L.LatLng(45.755658, 4.834432),
-          map = new L.Map('map', { center: latlng, zoom: 13, layers: [cloudmade] }),
-          markers = new L.MarkerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });
+      var markers = new L.MarkerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });
 
-      MapService.list.subscribe(function(list) {
+      GeoDataService.list.subscribe(function(list) {
+        $log.log('Observable subscriber called ---> MAP ', list.length);
         addMarkers(list);
       })
 
       function addMarkers(list) {
-        var markerList = [];
+        map.removeLayer(markers);
         markers.clearLayers();
 
+        if(list.length == 0) return;
+
+        GeoDataService.mapWIP = true;
+
+        var markerList = [];
         for (var i = 0; i < list.length; i++) {
           var a = list[i];
           if(a.latitude && a.longitude) {
-            var title = a.name;
-            var marker = new L.Marker(new L.LatLng(a.latitude, a.longitude), { title: title });
-            marker.bindPopup(title);
+            var marker = new L.Marker(new L.LatLng(a.latitude, a.longitude), { id: a.id });
             markerList.push(marker);
           }
         }
         console.time('clustering');
 
         markers.addLayers(markerList);
-
-        markers.on('click', function (e) {
-          $log.info('click > ', e);
-        });
-
+        markers.on('click', clickMarker);
         map.addLayer(markers);
 
         console.timeEnd('clustering');
@@ -70,7 +71,15 @@
 
         if (processed === total) {
           progress.style.display = 'none';
+
+          $timeout(function() {
+            GeoDataService.mapWIP = false;
+          })
         }
+      }
+
+      function clickMarker(e) {
+        $log.info('click > ', e);
       }
     }
   }

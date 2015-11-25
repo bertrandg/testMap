@@ -1,0 +1,46 @@
+
+er-main {
+  .navbar {
+    border-radius: 0;
+
+    .navbar-text {
+      position: relative;
+    }
+
+    .filter-bloc {
+      margin-right: 35px;
+
+      .glyphicon-time {
+        display: inline-block;
+        position: absolute;
+        top: 4px;
+        right: -25px;
+        font-size: 20px;
+        line-height: 20px;
+        color: red;
+      }
+    }
+  }
+
+  .hideMe {
+    opacity: 0 !important;
+  }
+  
+  .filter-display {
+    margin-right: 10px;
+
+    & > span:not(:last-child) {
+      &:after {
+        display: inline-block;
+        content: ' - ';
+        margin: 0 5px;
+      }
+    }
+
+    .val {
+      text-decoration: underline;
+    }
+  }
+}
+
+

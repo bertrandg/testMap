@@ -1,42 +1,100 @@
-<div class="modal-header">
-    <h3 class="modal-title">Filtrage des résultats:</h3>
-</div>
+<div class="erFilter">
+  <div class="modal-header">
+      <h3 class="modal-title">Critères de filtrage:</h3>
+  </div>
 
-<div class="modal-body">
-  <form name="mainForm">
-    <div>
-      <label><input type="checkbox" ng-model="vm.filter.gender.enabled"/> Genre:</label>
-      <form name="genderForm">
-        <label><input type="radio" ng-model="vm.filter.gender.value = 'male'"/> Homme</label>
-        <label><input type="radio" ng-model="vm.filter.gender.value = 'female'"/> Femme</label>
-      </form>
-    </div>
-    <div>
-      <label><input type="checkbox" ng-model="vm.filter.date.enabled"/> Date:</label>
-      <form name="dateForm">
-        <label>Début:<input type="text" ng-model="vm.filter.date.startValue"/></label>
-        <label>Fin: <input type="text" ng-model="vm.filter.date.endValue"/></label>
-      </form>
-    </div>
-    <div>
-      <label><input type="checkbox" ng-model="vm.filter.name.enabled"/>Nom: </label>
-      <form name="nameForm">
-        <input type="text" ng-model="vm.filter.name.value"/>
-      </form>
-    </div>
-    <div>
-      <label><input type="checkbox" ng-model="vm.filter.position.enabled"/>Position: </label>
-      <form name="positionForm">
-        <label>Latitude min: <input type="text" ng-model="vm.filter.position.startLatValue"/></label>
-        <label>Latitude max: <input type="text" ng-model="vm.filter.position.endLatValue"/></label>
-        <label>Longitude min: <input type="text" ng-model="vm.filter.position.startLngValue"/></label>
-        <label>Longitude max: <input type="text" ng-model="vm.filter.position.endLngValue"/></label>
-      </form>
-    </div>
-  </form>
-</div>
+  <div class="modal-body">
+    <form name="vm.mainForm" class="form-inline">
 
-<div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td>
+              <label><input type="checkbox" ng-model="vm.filter.name.enabled"/> Nom:</label>
+            </td>
+            <td ng-class="{'formOff': !vm.filter.name.enabled}">
+              <form name="vm.nameForm">
+                <label>Contient: <input type="text" ng-model="vm.filter.name.value" ng-disabled="!vm.filter.name.enabled" class="form-control" required /></label>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><input type="checkbox" ng-model="vm.filter.gender.enabled"/> Genre:</label>
+            </td>
+            <td ng-class="{'formOff': !vm.filter.gender.enabled}">
+              <form name="vm.genderForm" class="form-inline">
+                <label class="radio-inline">
+                  <input type="radio" ng-model="vm.filter.gender.value" ng-disabled="!vm.filter.gender.enabled" name="inlineRadioOptions" value="male"> Homme
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" ng-model="vm.filter.gender.value" ng-disabled="!vm.filter.gender.enabled" name="inlineRadioOptions" value="female"> Femme
+                </label>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <label><input type="checkbox" ng-model="vm.filter.date.enabled"/> Date:</label>
+            </td>
+            <td ng-class="{'formOff': !vm.filter.date.enabled}">
+              <form name="vm.dateForm" class="form-inline">
+                Début: 
+                <div class="input-group">
+                  <input type="date" 
+                      uib-datepicker-popup="dd/MM/yyyy"
+                      ng-model="vm.filter.date.startValue" 
+                      is-open="vm.date.dateA.opened"
+                      datepicker-options="vm.datepickerOptions" 
+                      date-disabled="!vm.filter.date.enabled" 
+                      ng-disabled="!vm.filter.date.enabled"
+                      close-text="Fermer"
+                      class="form-control"
+                      readonly />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.date.dateA.opened = true" ng-disabled="!vm.filter.date.enabled"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+                 - Fin: 
+                <div class="input-group">
+                  <input type="date" 
+                      uib-datepicker-popup="dd/MM/yyyy" 
+                      ng-model="vm.filter.date.endValue" 
+                      is-open="vm.date.dateB.opened"
+                      datepicker-options="vm.datepickerOptions" 
+                      date-disabled="!vm.filter.date.enabled" 
+                      ng-disabled="!vm.filter.date.enabled"
+                      close-text="Fermer"
+                      class="form-control"
+                      readonly />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.date.dateB.opened = true" ng-disabled="!vm.filter.date.enabled"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><input type="checkbox" ng-model="vm.filter.position.enabled"/> Position:</label>
+            </td>
+            <td ng-class="{'formOff': !vm.filter.position.enabled}">
+              <form name="vm.positionForm">
+                <label>Latitude min: <input type="number" ng-model="vm.filter.position.startLatValue" ng-disabled="!vm.filter.position.enabled" class="form-control" min="-90" max="90" step="0.001" required /></label>
+                <label>Latitude max: <input type="number" ng-model="vm.filter.position.endLatValue" ng-disabled="!vm.filter.position.enabled" class="form-control" min="-90" max="90" step="0.001" required /></label><br>
+                <label>Longitude min: <input type="number" ng-model="vm.filter.position.startLngValue" ng-disabled="!vm.filter.position.enabled" class="form-control" min="-180" max="180" step="0.001" required /></label>
+                <label>Longitude max: <input type="number" ng-model="vm.filter.position.endLngValue" ng-disabled="!vm.filter.position.enabled" class="form-control" min="-180" max="180" step="0.001" required /></label>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+      <button class="btn btn-danger pull-left" type="button" ng-click="vm.removeAll()" ng-disabled="vm.GeoDataService.mapWIP"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
+      <button class="btn btn-primary" type="button" ng-click="vm.cancel()">Fermer</button>
+      <button class="btn btn-primary" type="button" ng-click="vm.filterData()" ng-disabled="vm.GeoDataService.mapWIP"><span class="glyphicon glyphicon-filter"></span> Filtrer</button>
+  </div>
 </div>

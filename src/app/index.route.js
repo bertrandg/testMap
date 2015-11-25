@@ -10,9 +10,7 @@
     $stateProvider
       .state('home', {
         url: '/map',
-        templateUrl: 'app/main/main.tpl.html',
-        controller: 'MainController',
-        controllerAs: 'vm'
+        template: '<er-main></er-main>'
       });
 
     $urlRouterProvider.otherwise('/map');

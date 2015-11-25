@@ -1,2 +1,14 @@
-er-filter {
+.erFilter {
+
+  tr > td:first-child {
+    min-width: 100px;
+  }
+
+  .radio-inline {
+    font-weight: bold;
+  }
+
+  .formOff {
+    opacity: .5;
+  }
 }

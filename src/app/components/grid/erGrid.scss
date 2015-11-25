@@ -1,7 +1,7 @@
 er-grid {
-  display: block;
-  border: 1px solid #999;
-  padding: 10px;
+  .panel {
+    background-color: $color-bg;
+  }
 
   [ag-grid] {
     height: 600px;

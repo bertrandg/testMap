@@ -26,7 +26,8 @@
     };
 
     var Service = {
-      gridOptions: gridOptions
+      gridOptions: gridOptions,
+      dateComparator: dateComparator
     };
 
     function dateComparator(date1, date2) {

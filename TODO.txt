@@ -1,9 +1,39 @@
-
+## TODOS
 
 ✓ map: bug du png marker qui load pas.
-- ouverture modal avec details item quand click sur marker ou entrée du tableau
+X map: passer provider a google map ou autre pour avoir un meilleur zoom.
+✓ filter: ajout datepicker (ui-bootstrap).
+- ouverture modal avec details item quand click sur marker ou entrée du tableau.
 - loading du json: faire un avancement.
-- style: bootstrapiser tout ça.
-- style: utiliser SASS mixin & variables.
-- style: utiliser quelques glyphicons.
-- supprimer ui-leaflet des dependances.
+✓ filter: quand 0 results > retour etat chargement.
+- filter: ajouter validation sur form avec input.ng-invalid.ng-pristine { border-color: red; }
+✓ style: bootstrapiser tout ça.
+✓ style: utiliser SASS mixin & variables.
+✓ style: utiliser quelques glyphicons.
+✓ supprimer ui-leaflet des dependances.
+
+
+------------------------
+
+# AMELIORATIONS
+
+- utiliser des vraies dates plutôt que des string
+- conserver les 100k markers sur un clusterGroup à part quand on affiche un tableaux filtré pour réutiliser par la suite.
+- trouver moyen de stopper le 'chunkProgress' lors ajout markers pour pouvoir repartir d'un nouveau tableau de data.
+
+------------------------
+
+
+[
+  '{{repeat(1000)}}',
+  {
+    id: '{{objectId()}}',
+    name: '{{firstName()}} {{surname()}}',
+    desc: '{{lorem(1, "paragraphs")}}',
+    registered: '{{date(new Date(2015, 10, 1), new Date(), "dd/MM/YYYY")}}',
+    latitude: '{{floating(45.775776, 45.742722)}}',
+    longitude: '{{floating(4.797697, 4.853658)}}',
+    gender: '{{gender()}}',
+    phone: '+33 {{phone()}}'
+  }
+]

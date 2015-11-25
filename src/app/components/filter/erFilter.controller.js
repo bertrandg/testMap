@@ -6,31 +6,32 @@
     .controller('ErFilterController', ErFilterController);
 
   /** @ngInject */
-  function ErFilterController($modalInstance) {
+  function ErFilterController($uibModalInstance, $log, FilterService) {
     var vm = this;
 
-    vm.filter = {
-      name: {
-        enabled: false,
-        value: ''
+    vm.filter = FilterService.filter;
+    vm.datepickerOptions = FilterService.datepickerOptions;
+    vm.date = {
+      dateA: {
+        opened: false
       },
-      date: {
-        enabled: false,
-        startValue: '',
-        endValue: ''
-      },
-      gender: {
-        enabled: false,
-        value: ''
-      },
-      position: {
-        enabled: false,
-        startLatValue: '',
-        endLatValue: '',
-        startLngValue: '',
-        endLngValue: ''
-      },
-
+      dateB: {
+        opened: false
+      }
     }
+
+    vm.removeAll = function() {
+      FilterService.removeAll();
+      $uibModalInstance.close(vm.filter);
+    };
+
+    vm.filterData = function() {
+      $uibModalInstance.close(vm.filter);
+    };
+
+    vm.cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+
   }
 })();

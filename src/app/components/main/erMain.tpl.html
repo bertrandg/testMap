@@ -1,0 +1,23 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <p class="navbar-text filter-bloc">
+      <strong>Filtres:</strong> <span ng-bind-html="vm.FilterService.filterDisplayText" class="filter-display"></span>
+      <button ng-click="vm.FilterService.openModal()" ng-disabled="vm.GeoDataService.mapWIP" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span> Modifier</button> 
+      <button ng-click="vm.FilterService.removeAllAndRefresh()" ng-disabled="vm.GeoDataService.mapWIP" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
+      <span ng-show="vm.GeoDataService.mapWIP" class="glyphicon glyphicon-time"></span>
+    </p>
+    <p class="navbar-text navbar-right"><strong>Données affichées:</strong> {{ vm.totalDisplayItems + ' / ' + vm.GeoDataService.totalItems }}<button class="btn btn-sm btn-danger" style="opacity: 0;">X</button></p>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <h1 ng-if="vm.GeoDataService.totalItems == 0" class="text-center">Chargement des positions..</h1>
+  <div ng-class="{'hideMe': vm.GeoDataService.totalItems == 0}">
+    <div class="col-md-6 col-sm-12">
+      <er-grid></er-grid>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <er-map></er-map>
+    </div>
+  </div>
+</div>
