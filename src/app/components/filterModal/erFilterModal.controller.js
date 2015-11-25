@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .controller('ErFilterController', ErFilterController);
+    .controller('ErFilterModalController', ErFilterModalController);
 
   /** @ngInject */
-  function ErFilterController($uibModalInstance, $log, FilterService) {
+  function ErFilterModalController($uibModalInstance, $log, FilterService) {
     var vm = this;
 
     vm.filter = FilterService.filter;

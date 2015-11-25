@@ -28,7 +28,7 @@
         layers: [new L.TileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { maxZoom: 21 })]
       });
 
-      var markers = new L.MarkerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });
+      var markers = null;
 
       GeoDataService.list.subscribe(function(list) {
         $log.log('Observable subscriber called ---> MAP ', list.length);
@@ -36,8 +36,11 @@
       })
 
       function addMarkers(list) {
-        markers.clearLayers();
-        map.removeLayer(markers);
+        if(markers) {
+          map.removeLayer(markers);
+          markers.clearLayers();
+          markers = null;
+        }
 
         if(list.length == 0) return;
 
@@ -53,9 +56,12 @@
           }
         }
 
-        markers.addLayers(markerList);
-        //markers.on('click', clickMarker);
-        map.addLayer(markers);
+        $timeout(function() {
+          markers = new L.MarkerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });
+          markers.addLayers(markerList);
+          markers.on('click', clickMarker);
+          map.addLayer(markers);
+        });
       }
 
       function updateProgressBar(processed, total, elapsed, layersArray) {

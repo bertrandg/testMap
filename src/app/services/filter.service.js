@@ -48,8 +48,8 @@
     function openModal() {
       var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: 'app/components/filter/erFilter.tpl.html',
-        controller: 'ErFilterController',
+        templateUrl: 'app/components/filterModal/erFilterModal.tpl.html',
+        controller: 'ErFilterModalController',
         controllerAs: 'vm',
         bindToController: true,
         size: 'lg'

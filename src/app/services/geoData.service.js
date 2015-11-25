@@ -14,13 +14,14 @@
     L.Icon.Default.imagePath = 'assets/images/leaflet';
 
     var Service = {
-      loadData: loadData,
-      filterData: filterData,
       totalItems: 0,
       mapWIP: true,
       list: Rx.Observable.create(function(observer) {
         _observer = observer;
-      }).share()
+      }).share(),
+      loadData: loadData,
+      filterData: filterData,
+      getItem: getItem
     };
 
     $timeout(function() {
@@ -50,6 +51,10 @@
       function loadDataFailed(error) {
         $log.error('XHR Failed for getData.' + angular.toJson(error.data, true));
       }
+    }
+
+    function getItem(id) {
+      return _.find(_list, function(item) { item.id = id; });
     }
 
     function filterData(filter) {
