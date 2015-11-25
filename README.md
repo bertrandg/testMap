@@ -12,9 +12,12 @@
 
 ## Demo:
 
-Par défaut, l'application charge 102k points.
-Il est possible de tester avec 32k points: [http://bertrandg.github.io/testMap/dist/#/map?tab=32k](http://bertrandg.github.io/testMap/dist/#/map?tab=32k)
-Il est possible de tester avec 64k points: [http://bertrandg.github.io/testMap/dist/#/map?tab=64k](http://bertrandg.github.io/testMap/dist/#/map?tab=64k)
+Par défaut, l'application charge 102k points:<br>
+[http://bertrandg.github.io/testMap/dist/#/map](http://bertrandg.github.io/testMap/dist/#/map)
+
+Il est possible de tester avec 32k points:<br> [http://bertrandg.github.io/testMap/dist/#/map?tab=32k](http://bertrandg.github.io/testMap/dist/#/map?tab=32k)
+
+Et 64k points:<br> [http://bertrandg.github.io/testMap/dist/#/map?tab=64k](http://bertrandg.github.io/testMap/dist/#/map?tab=64k)
 
 ## Pour installer l'application:
 
@@ -30,5 +33,7 @@ Il est possible de tester avec 64k points: [http://bertrandg.github.io/testMap/d
   * [http://localhost:3001/](http://localhost:3001/) <- paramétrage browsersync
 - `gulp build` <- génére l'application dans le dossier dist (PROD)
 
-### Utilisation du générateur Yeoman pour créer le projet:
+## Info
+
+Utilisation du générateur Yeoman pour créer le projet:<br>
 [https://github.com/Swiip/generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
