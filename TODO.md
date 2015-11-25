@@ -13,6 +13,7 @@ X map: passer provider a google map ou autre pour avoir un meilleur zoom.
 ✓ supprimer ui-leaflet des dependances.
 - loading du json: faire un avancement.
 - filter: ajouter validation sur form avec input.ng-invalid.ng-pristine { border-color: red; }
+- remonter le tableau en haut quand changement de liste d'items
 
 ------------------------
 
@@ -22,6 +23,7 @@ X map: passer provider a google map ou autre pour avoir un meilleur zoom.
 - utiliser des vraies dates plutôt que des string.
 - conserver les 100k markers sur un clusterGroup à part quand on affiche un tableaux filtré pour réutiliser par la suite.
 - trouver moyen de stopper le 'chunkProgress' lors ajout markers pour pouvoir repartir d'un nouveau tableau de data.
+- utiliser le systéme de filtrage intégré de ag-Grid.
 
 ------------------------
 
